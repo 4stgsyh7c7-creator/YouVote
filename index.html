@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Public Voice Prototype</title>
+</head>
+<body>
+  <h1>Public Voice – Live Bills</h1>
+  <ul id="bills"></ul>
+
+  <script>
+    fetch("https://api.openparliament.ca/bills/?format=json")
+      .then(response => response.json())
+      .then(data => {
+        const list = document.getElementById("bills");
+        data.objects.slice(0, 10).forEach(bill => {
+          const li = document.createElement("li");
+          li.innerHTML = `<strong>${bill.number}</strong>: ${bill.name.en} (${bill.introduced})`;
+          list.appendChild(li);
+        });
+      })
+      .catch(error => console.error(error));
+  </script>
+</body>
+</html>
