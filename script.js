@@ -1,2 +1,3 @@
-// simple placeholder
-console.log("script.js loaded");
+document.addEventListener("DOMContentLoaded", () => {
+  alert("The app is now loading!");
+});
